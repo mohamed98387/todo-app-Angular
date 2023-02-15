@@ -16,7 +16,7 @@
     <div class="id">{{ i }}</div>
     <div class="content" (click)="toggleDone(i)">{{ todo.content }}</div>
     <button
-      class="delete"
+      class="delete btn btn-danger"
       (click)="delete(i)"
       [disabled]="todo.completed == false"
     >
@@ -24,7 +24,11 @@
     </button>
   </div>
 
-  <button class="deleteAll btn btn-danger" (click)="removeAll()">
+  <button
+    class="deleteAll btn btn-danger"
+    (click)="removeAll()"
+    [disabled]="todos.length === 0"
+  >
     removeAll
   </button>
 </div>

@@ -10,16 +10,7 @@ export class TodosComponent implements OnInit {
   inputTodo: string = '';
   constructor() {}
   ngOnInit(): void {
-    this.todos = [
-      {
-        content: 'todo1',
-        completed: false,
-      },
-      {
-        content: 'todo2',
-        completed: false,
-      },
-    ];
+    this.todos = [];
   }
   toggleDone(id: any) {
     this.todos.map((o, i) => {
