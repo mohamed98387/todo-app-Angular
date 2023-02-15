@@ -38,4 +38,7 @@ export class TodosComponent implements OnInit {
 
     this.inputTodo = '';
   }
+  removeAll() {
+    this.todos = [];
+  }
 }
