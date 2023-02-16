@@ -15,12 +15,23 @@
   >
     <div class="id">{{ i }}</div>
     <div class="content" (click)="toggleDone(i)">{{ todo.content }}</div>
+
     <button
-      class="delete btn btn-danger"
+      type="button"
+      class="edit btn btn-outline-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      [disabled]="todo.completed == true"
+      (click)="openModal(todo)"
+    >
+      e
+    </button>
+    <button
       (click)="delete(i)"
+      class="delete btn btn-outline-danger"
       [disabled]="todo.completed == false"
     >
-      Remove
+      -
     </button>
   </div>
 
@@ -28,7 +39,55 @@
     class="deleteAll btn btn-danger"
     (click)="removeAll()"
     [disabled]="todos.length === 0"
+    *ngIf="!isModalOpen"
   >
     removeAll
   </button>
+</div>
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Your Todo</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body" *ngFor="let todo of todoE; let i = index">
+        <input
+          class="form-control"
+          aria-describedby="emailHelp"
+          [(ngModel)]="todo.content"
+        />
+      </div>
+      <div class="modal-footer" *ngFor="let todo of todoE; let i = index">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="closeModal()"
+        >
+          Close
+        </button>
+
+        <button type="button" class="btn btn-primary" (click)="edit(todo)">
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
